@@ -29,7 +29,7 @@ export default function MovieDetails({ id }: { id: number }) {
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-8">
       {data.poster_path ? (
         <Image
-          src={`https://image.tmdb.org/t/p/w400${data.poster_path}`}
+          src={`https://${process.env.NEXT_PUBLIC_TMDB_POSTER_URL}${data.poster_path}`}
           alt={data.title || t('details.untitled')}
           width={400}
           height={576}

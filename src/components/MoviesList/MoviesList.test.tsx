@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import MoviesList, { Movie } from './MoviesList'
+import MoviesList from './MoviesList'
 import { t } from '../../i18n'
 import { describe, it, expect } from 'vitest'
+import { Movie } from '../MovieCard/MovieCard'
 
 describe('MoviesList', () => {
   it('renders a list of movies', () => {
