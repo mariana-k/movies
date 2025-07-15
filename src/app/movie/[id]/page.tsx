@@ -1,15 +1,23 @@
-import React from 'react'
-import { t } from '../../../i18n'
-// import { useParams } from 'next/navigation'
+import { createSSRQueryClient, dehydrateState } from '../../../lib/react-query-ssr'
+import { HydrationBoundary } from '@tanstack/react-query'
+import QueryProvider from '../../QueryProvider'
+import MovieDetails from '@/components/MovieDetails'
+import { fetchMovieDetails } from '../../../api/tmdb'
 
-export default function MovieDetailsPage() {
-  // TODO: Fetch movie details using id
-  // const { id } = useParams()
+export default async function MovieDetailsPage({ params }: { params: { id: string } }) {
+  const id = Number(params.id)
+  const queryClient = createSSRQueryClient()
+  await queryClient.prefetchQuery({
+    queryKey: ['movie-details', id],
+    queryFn: () => fetchMovieDetails(id),
+  })
+  const dehydratedState = dehydrateState(queryClient)
+
   return (
-    <main className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-6">{t('details.title')}</h1>
-      {/* TODO: Movie details content */}
-      <div className="text-gray-500">{t('details.loading')}</div>
-    </main>
+    <QueryProvider>
+      <HydrationBoundary state={dehydratedState}>
+        <MovieDetails id={id} />
+      </HydrationBoundary>
+    </QueryProvider>
   )
 }
