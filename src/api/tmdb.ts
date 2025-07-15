@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API_KEY = process.env.TMDB_API_KEY as string
-const BASE_URL = process.env.TMDB_BASE_URL as string
+const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY as string
+const BASE_URL = process.env.NEXT_PUBLIC_TMDB_BASE_URL as string
 
 const tmdb = axios.create({
   baseURL: BASE_URL,
