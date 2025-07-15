@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { t } from '../i18n'
 import { Star, StarOff } from 'lucide-react'
+import Image from 'next/image'
 
 export type Movie = {
   id: number
@@ -23,10 +24,13 @@ export default function MoviesList({ movies }: { movies: Movie[] }) {
           className="block bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden group"
         >
           {movie.poster_path ? (
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
               alt={movie.title || t('home.untitled')}
+              width={300}
+              height={384}
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform"
+              priority={false}
             />
           ) : (
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-400">
