@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { AnchorHTMLAttributes, DetailedHTMLProps, ImgHTMLAttributes } from 'react'
 import { render, screen } from '@testing-library/react'
 import MovieCard, { Movie } from './MovieCard'
 import { describe, it, expect, vi } from 'vitest'
 
-vi.mock('next/image', () => ({ __esModule: true, default: (props: any) => <img {...props} /> }))
-vi.mock('next/link', () => ({ __esModule: true, default: (props: any) => <a {...props} /> }))
+vi.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => (
+    <img {...props} />
+  ),
+}))
+vi.mock('next/link', () => ({
+  __esModule: true,
+  default: (
+    props: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+  ) => <a {...props} />,
+}))
 
 describe('MovieCard', () => {
   const baseMovie: Movie = {
