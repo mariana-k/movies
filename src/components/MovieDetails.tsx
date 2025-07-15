@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchMovieDetails } from '../api/tmdb'
 import { t } from '../i18n'
 import { Star, StarOff } from 'lucide-react'
+import Image from 'next/image'
 
 function formatRuntime(runtime: number) {
   if (!runtime && runtime !== 0) return t('details.noReleaseDate')
@@ -25,10 +26,13 @@ export default function MovieDetails({ id }: { id: number }) {
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-8">
       {data.poster_path ? (
-        <img
+        <Image
           src={`https://image.tmdb.org/t/p/w400${data.poster_path}`}
           alt={data.title || t('details.untitled')}
+          width={400}
+          height={576}
           className="w-full md:w-64 rounded-lg object-cover"
+          priority={false}
         />
       ) : (
         <div className="w-full md:w-64 h-96 bg-gray-200 flex items-center justify-center text-gray-400 rounded-lg">
