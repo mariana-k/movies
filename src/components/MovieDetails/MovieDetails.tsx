@@ -6,6 +6,7 @@ import { t } from '../../i18n'
 import { Star, StarOff } from 'lucide-react'
 import Image from 'next/image'
 import { Rating } from '../Rating/Rating'
+import Badge from '../Badge/Badge'
 
 function formatRuntime(runtime: number) {
   if (!runtime && runtime !== 0) return t('details.noReleaseDate')
@@ -48,14 +49,7 @@ export default function MovieDetails({ id }: { id: number }) {
         <div className="mb-4 text-gray-700">{data.overview || t('details.noOverview')}</div>
         <div className="flex flex-wrap gap-2 mb-2">
           {Array.isArray(data.genres) && data.genres.length ? (
-            data.genres.map((g: Genre) => (
-              <span
-                key={g.id}
-                className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium"
-              >
-                {g.name}
-              </span>
-            ))
+            data.genres.map((g: Genre) => <Badge key={g.id}>{g.name}</Badge>)
           ) : (
             <span className="text-gray-400">{t('details.noGenres')}</span>
           )}
