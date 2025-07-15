@@ -7,12 +7,12 @@ export function Rating({ value, fallback }: { value?: number; fallback: string }
       {typeof value === 'number' ? (
         <>
           <Star size={16} className="inline-block fill-yellow-500 stroke-yellow-500" />
-          {value}
+          <span className="font-bold text-gray-800">{value}</span>
         </>
       ) : (
         <>
           <StarOff size={16} className="inline-block text-gray-300" />
-          {fallback}
+          <span className="font-bold text-gray-800">{fallback}</span>
         </>
       )}
     </span>

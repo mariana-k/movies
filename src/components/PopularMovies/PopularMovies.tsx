@@ -27,13 +27,18 @@ export default function PopularMovies() {
       <h2 className="text-2xl font-bold mb-4">{t('home.title')}</h2>
       <MoviesList movies={data.results} />
       <div className="flex justify-center gap-4 mt-6">
-        <Button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}>
+        <Button
+          onClick={() => setPage((p) => Math.max(1, p - 1))}
+          disabled={page === 1}
+          aria-label={t('home.prev')}
+        >
           {t('home.prev')}
         </Button>
         <span className="px-2 py-2">{page}</span>
         <Button
           onClick={() => setPage((p) => p + 1)}
           disabled={data.total_pages && page >= data.total_pages}
+          aria-label={t('home.next')}
         >
           {t('home.next')}
         </Button>

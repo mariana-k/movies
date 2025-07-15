@@ -36,7 +36,7 @@ const MovieCard: React.FC<{ movie: Movie }> = ({ movie }) => (
       <div className="text-sm text-gray-500 mb-1">
         {movie.release_date || t('home.noReleaseDate')}
       </div>
-      <div className="flex items-center gap-1 text-yellow-500 font-bold">
+      <div className="flex items-center gap-1">
         <Rating
           value={
             typeof movie.vote_average === 'number'
