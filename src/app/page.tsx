@@ -5,6 +5,7 @@ import { HydrationBoundary } from '@tanstack/react-query'
 import QueryProvider from './QueryProvider'
 import PopularMovies from '@/components/PopularMovies'
 import { fetchPopularMovies } from '../api/tmdb'
+import SearchResults from '@/components/SearchResults'
 
 export default async function Home() {
   const queryClient = createSSRQueryClient()
@@ -17,7 +18,10 @@ export default async function Home() {
   return (
     <QueryProvider>
       <HydrationBoundary state={dehydratedState}>
-        <PopularMovies />
+        <div className="container mx-auto py-8">
+          <SearchResults />
+          <PopularMovies />
+        </div>
       </HydrationBoundary>
     </QueryProvider>
   )

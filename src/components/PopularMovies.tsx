@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchPopularMovies } from '../api/tmdb'
 import { t } from '../i18n'
-import Link from 'next/link'
+import MoviesList from './MoviesList'
 
 export default function PopularMovies() {
   const { data, isLoading, error } = useQuery({
@@ -17,12 +17,9 @@ export default function PopularMovies() {
   if (!data.results || data.results.length === 0) return <div>{t('home.noResults')}</div>
 
   return (
-    <ul>
-      {data.results.map((movie: any) => (
-        <li key={movie.id}>
-          <Link href={`/movie/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <section>
+      <h2 className="text-2xl font-bold mb-4">{t('home.title')}</h2>
+      <MoviesList movies={data.results} />
+    </section>
   )
 }

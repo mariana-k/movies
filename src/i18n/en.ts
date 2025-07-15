@@ -1,4 +1,7 @@
 export const en = {
+  app: {
+    title: 'MoviesBoard',
+  },
   home: {
     title: 'Popular Movies',
     searchPlaceholder: 'Search for movies...',
