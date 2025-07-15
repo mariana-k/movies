@@ -21,23 +21,23 @@ export default function MoviesList({ movies }: { movies: Movie[] }) {
         <Link
           key={movie.id}
           href={`/movie/${movie.id}`}
-          className="block bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden group"
+          className="flex flex-row bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden group"
         >
           {movie.poster_path ? (
             <Image
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
               alt={movie.title || t('home.untitled')}
-              width={300}
-              height={384}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform"
+              width={128}
+              height={192}
+              className="w-32 h-48 object-cover group-hover:scale-105 transition-transform flex-shrink-0"
               priority={false}
             />
           ) : (
-            <div className="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-400">
+            <div className="w-32 h-48 bg-gray-200 flex items-center justify-center text-gray-400 flex-shrink-0">
               {t('home.noImage')}
             </div>
           )}
-          <div className="p-4">
+          <div className="p-4 flex-1 min-w-0">
             <h3 className="text-lg font-semibold mb-1 truncate">
               {movie.title || t('home.untitled')}
             </h3>
