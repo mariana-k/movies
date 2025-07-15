@@ -3,11 +3,9 @@ import { HydrationBoundary } from '@tanstack/react-query'
 import QueryProvider from '../../QueryProvider'
 import MovieDetails from '@/components/MovieDetails'
 import { fetchMovieDetails } from '../../../api/tmdb'
-interface PageProps {
-  params: { id: string }
-}
-const Page: React.FC<PageProps> = async ({ params }) => {
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+
   const numberId = Number(id)
   const queryClient = createSSRQueryClient()
   await queryClient.prefetchQuery({
@@ -24,4 +22,3 @@ const Page: React.FC<PageProps> = async ({ params }) => {
     </QueryProvider>
   )
 }
-export default Page
