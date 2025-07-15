@@ -15,13 +15,11 @@ export default async function Home() {
   const dehydratedState = dehydrateState(queryClient)
 
   return (
-    <QueryProvider>
-      <HydrationBoundary state={dehydratedState}>
-        <div className="container mx-auto py-8">
-          <SearchResults />
-          <PopularMovies />
-        </div>
-      </HydrationBoundary>
-    </QueryProvider>
+    <HydrationBoundary state={dehydratedState}>
+      <div className="container mx-auto py-8">
+        <SearchResults />
+        <PopularMovies />
+      </div>
+    </HydrationBoundary>
   )
 }

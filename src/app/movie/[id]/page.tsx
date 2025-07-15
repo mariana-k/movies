@@ -15,10 +15,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const dehydratedState = dehydrateState(queryClient)
 
   return (
-    <QueryProvider>
-      <HydrationBoundary state={dehydratedState}>
-        <MovieDetails id={numberId} />
-      </HydrationBoundary>
-    </QueryProvider>
+    <HydrationBoundary state={dehydratedState}>
+      <MovieDetails id={numberId} />
+    </HydrationBoundary>
   )
 }
