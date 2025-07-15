@@ -1,5 +1,5 @@
 import React from 'react'
-import { t } from '../i18n'
+import { t } from '../../i18n'
 import { Film } from 'lucide-react'
 import Link from 'next/link'
 

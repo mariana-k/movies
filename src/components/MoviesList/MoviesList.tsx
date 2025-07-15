@@ -1,8 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import { t } from '../i18n'
+import { t } from '../../i18n'
 import { Star, StarOff } from 'lucide-react'
 import Image from 'next/image'
+import { Rating } from '../Rating/Rating'
 
 export type Movie = {
   id: number
@@ -45,17 +46,14 @@ export default function MoviesList({ movies }: { movies: Movie[] }) {
               {movie.release_date || t('home.noReleaseDate')}
             </div>
             <div className="flex items-center gap-1 text-yellow-500 font-bold">
-              {typeof movie.vote_average === 'number' ? (
-                <>
-                  <Star size={16} className="inline-block fill-yellow-500 stroke-yellow-500" />
-                  {movie.vote_average.toFixed(1)}
-                </>
-              ) : (
-                <>
-                  <StarOff size={16} className="inline-block text-gray-300" />
-                  {t('home.noRating')}
-                </>
-              )}
+              <Rating
+                value={
+                  typeof movie.vote_average === 'number'
+                    ? Number(movie.vote_average.toFixed(1))
+                    : undefined
+                }
+                fallback={t('home.noRating')}
+              />
             </div>
           </div>
         </Link>

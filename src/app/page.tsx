@@ -2,9 +2,9 @@ import React from 'react'
 import { createSSRQueryClient, dehydrateState } from '../lib/react-query-ssr'
 import { HydrationBoundary } from '@tanstack/react-query'
 import QueryProvider from './QueryProvider'
-import PopularMovies from '@/components/PopularMovies'
 import { fetchPopularMovies } from '../api/tmdb'
-import SearchResults from '@/components/SearchResults'
+import SearchResults from '@/components/SearchResults/SearchResults'
+import PopularMovies from '@/components/PopularMovies/PopularMovies'
 
 export default async function Home() {
   const queryClient = createSSRQueryClient()

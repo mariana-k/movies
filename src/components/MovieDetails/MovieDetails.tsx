@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchMovieDetails } from '../api/tmdb'
-import { t } from '../i18n'
+import { fetchMovieDetails } from '../../api/tmdb'
+import { t } from '../../i18n'
 import { Star, StarOff } from 'lucide-react'
 import Image from 'next/image'
 

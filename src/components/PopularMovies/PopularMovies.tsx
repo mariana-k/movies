@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchPopularMovies } from '../api/tmdb'
-import { t } from '../i18n'
-import MoviesList from './MoviesList'
+import { fetchPopularMovies } from '../../api/tmdb'
+import { t } from '../../i18n'
+import MoviesList from '../MoviesList/MoviesList'
 
 export default function PopularMovies() {
   const [page, setPage] = useState(1)

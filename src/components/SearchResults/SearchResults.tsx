@@ -1,10 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { searchMovies } from '../api/tmdb'
-import { t } from '../i18n'
-import MoviesList from './MoviesList'
-import SearchBar from './SearchBar'
+import { searchMovies } from '../../api/tmdb'
+import { t } from '../../i18n'
+import MoviesList from '../MoviesList/MoviesList'
+import SearchBar from '../SearchBar/SearchBar'
 
 function useDebounce(value: string, delay: number) {
   const [debounced, setDebounced] = useState(value)

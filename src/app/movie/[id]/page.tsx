@@ -1,7 +1,7 @@
 import { createSSRQueryClient, dehydrateState } from '../../../lib/react-query-ssr'
 import { HydrationBoundary } from '@tanstack/react-query'
 import QueryProvider from '../../QueryProvider'
-import MovieDetails from '@/components/MovieDetails'
+import MovieDetails from '@/components/MovieDetails/MovieDetails'
 import { fetchMovieDetails } from '../../../api/tmdb'
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params

@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import SearchBar from './SearchBar'
 import { describe, it, expect, vi } from 'vitest'
-import { t } from '../i18n'
+import { t } from '../../i18n'
 
 describe('SearchBar', () => {
   it('renders input with placeholder and value', () => {

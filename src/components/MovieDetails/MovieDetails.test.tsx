@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import * as tmdb from '../api/tmdb'
+import * as tmdb from '../../api/tmdb'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { vi, describe, it, expect, afterEach } from 'vitest'
-import { t } from '../i18n'
+import { t } from '../../i18n'
 import MovieDetails from './MovieDetails'
 
-vi.mock('../api/tmdb')
+vi.mock('../../api/tmdb')
 afterEach(() => {
   vi.clearAllMocks()
 })
