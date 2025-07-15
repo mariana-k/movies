@@ -12,9 +12,13 @@ export default function PopularMovies() {
   })
 
   if (isLoading) return <div>{t('home.loading')}</div>
-  if (error) return <div>{t('home.noResults')}</div>
-  if (!data) return <div>{t('home.noResults')}</div>
-  if (!data.results || data.results.length === 0) return <div>{t('home.noResults')}</div>
+  if (error)
+    return (
+      <div className="text-red-500 text-center py-8">
+        {t('home.error') || 'Failed to load movies. Please try again later.'}
+      </div>
+    )
+  if (!data || !data.results) return <MoviesList movies={[]} />
 
   return (
     <section>

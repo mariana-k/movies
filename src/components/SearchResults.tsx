@@ -30,14 +30,15 @@ export default function SearchResults() {
     <div>
       <SearchBar value={search} onChange={setSearch} />
       {isLoading && <div>{t('home.loading')}</div>}
-      {error && <div>{t('home.noResults')}</div>}
+      {error && <div className="text-red-500 text-center py-8">{t('home.error')}</div>}
       {data && data.results && data.results.length > 0 && <MoviesList movies={data.results} />}
       {data &&
-        data.results &&
-        data.results.length === 0 &&
+        (!data.results || data.results.length === 0) &&
         !isLoading &&
         !error &&
-        debouncedSearch && <div>{t('home.noResults')}</div>}
+        debouncedSearch && (
+          <div className="text-center text-gray-500 py-8">{t('home.noResults')}</div>
+        )}
     </div>
   )
 }

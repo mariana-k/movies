@@ -49,6 +49,6 @@ describe('PopularMovies', () => {
         <PopularMovies />
       </QueryClientProvider>,
     )
-    expect(await screen.findByText(t('home.noResults'))).toBeInTheDocument()
+    expect(await screen.findByText(t('home.noMoviesToDisplay'))).toBeInTheDocument()
   })
 })

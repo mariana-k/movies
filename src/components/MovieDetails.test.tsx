@@ -47,7 +47,7 @@ describe('MovieDetails', () => {
       runtime: 120,
       original_language: 'en',
     })
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
     render(
       <QueryClientProvider client={queryClient}>
         <MovieDetails id={1} />
@@ -57,8 +57,48 @@ describe('MovieDetails', () => {
     expect(screen.getByText('2023-01-01')).toBeInTheDocument()
     expect(screen.getByText('A test movie.')).toBeInTheDocument()
     expect(screen.getByText('Action')).toBeInTheDocument()
-    expect(screen.getByText('7.5')).toBeInTheDocument()
+    expect(screen.getByText('⭐ 7.5')).toBeInTheDocument()
     expect(screen.getByText('2h 0m')).toBeInTheDocument()
     expect(screen.getByText('en')).toBeInTheDocument()
+  })
+
+  it('renders untitled fallback when title is missing', async () => {
+    ;(tmdb.fetchMovieDetails as any).mockResolvedValue({
+      // title is missing
+      release_date: '2023-01-01',
+      poster_path: '/poster.jpg',
+      overview: 'A test movie.',
+      genres: [{ id: 1, name: 'Action' }],
+      vote_average: 7.5,
+      runtime: 120,
+      original_language: 'en',
+    })
+    const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MovieDetails id={1} />
+      </QueryClientProvider>,
+    )
+    expect(await screen.findByText(t('details.untitled'))).toBeInTheDocument()
+  })
+
+  it('renders untitled fallback when title is empty string', async () => {
+    ;(tmdb.fetchMovieDetails as any).mockResolvedValue({
+      title: '',
+      release_date: '2023-01-01',
+      poster_path: '/poster.jpg',
+      overview: 'A test movie.',
+      genres: [{ id: 1, name: 'Action' }],
+      vote_average: 7.5,
+      runtime: 120,
+      original_language: 'en',
+    })
+    const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MovieDetails id={1} />
+      </QueryClientProvider>,
+    )
+    expect(await screen.findByText(t('details.untitled'))).toBeInTheDocument()
   })
 })
