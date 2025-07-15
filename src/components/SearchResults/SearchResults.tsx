@@ -27,7 +27,7 @@ export default function SearchResults() {
   })
 
   return (
-    <div>
+    <div className="mb-6">
       <SearchBar value={search} onChange={setSearch} />
       {isLoading && <div>{t('home.loading')}</div>}
       {error && <div className="text-red-500 text-center py-8">{t('home.error')}</div>}
