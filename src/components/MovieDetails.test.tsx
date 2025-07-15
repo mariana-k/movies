@@ -57,7 +57,7 @@ describe('MovieDetails', () => {
     expect(screen.getByText('2023-01-01')).toBeInTheDocument()
     expect(screen.getByText('A test movie.')).toBeInTheDocument()
     expect(screen.getByText('Action')).toBeInTheDocument()
-    expect(screen.getByText('⭐ 7.5')).toBeInTheDocument()
+    expect(screen.getByText('7.5')).toBeInTheDocument()
     expect(screen.getByText('2h 0m')).toBeInTheDocument()
     expect(screen.getByText('en')).toBeInTheDocument()
   })

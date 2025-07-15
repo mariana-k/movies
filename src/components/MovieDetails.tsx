@@ -3,6 +3,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { fetchMovieDetails } from '../api/tmdb'
 import { t } from '../i18n'
+import { Star, StarOff } from 'lucide-react'
 
 function formatRuntime(runtime: number) {
   if (!runtime && runtime !== 0) return t('details.noReleaseDate')
@@ -52,9 +53,19 @@ export default function MovieDetails({ id }: { id: number }) {
             <span className="text-gray-400">{t('details.noGenres')}</span>
           )}
         </div>
-        <div className="flex gap-4 text-sm text-gray-600 mb-2">
-          <span>
-            ⭐ {typeof data.vote_average === 'number' ? data.vote_average : t('details.noRating')}
+        <div className="flex gap-4 text-sm text-gray-600 mb-2 items-center">
+          <span className="flex items-center gap-1">
+            {typeof data.vote_average === 'number' ? (
+              <>
+                <Star size={16} className="inline-block fill-yellow-500 stroke-yellow-500" />
+                {data.vote_average}
+              </>
+            ) : (
+              <>
+                <StarOff size={16} className="inline-block text-gray-300" />
+                {t('details.noRating')}
+              </>
+            )}
           </span>
           <span>{formatRuntime(data.runtime)}</span>
           <span>{data.original_language || t('details.noLanguage')}</span>

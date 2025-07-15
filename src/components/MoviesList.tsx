@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { t } from '../i18n'
+import { Star, StarOff } from 'lucide-react'
 
 export type Movie = {
   id: number
@@ -39,10 +40,18 @@ export default function MoviesList({ movies }: { movies: Movie[] }) {
             <div className="text-sm text-gray-500 mb-1">
               {movie.release_date || t('home.noReleaseDate')}
             </div>
-            <div className="text-sm text-yellow-500 font-bold">
-              {typeof movie.vote_average === 'number'
-                ? `★ ${movie.vote_average.toFixed(1)}`
-                : t('home.noRating')}
+            <div className="flex items-center gap-1 text-yellow-500 font-bold">
+              {typeof movie.vote_average === 'number' ? (
+                <>
+                  <Star size={16} className="inline-block fill-yellow-500 stroke-yellow-500" />
+                  {movie.vote_average.toFixed(1)}
+                </>
+              ) : (
+                <>
+                  <StarOff size={16} className="inline-block text-gray-300" />
+                  {t('home.noRating')}
+                </>
+              )}
             </div>
           </div>
         </Link>

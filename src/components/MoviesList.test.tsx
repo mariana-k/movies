@@ -27,8 +27,8 @@ describe('MoviesList', () => {
     expect(screen.getByText('Movie 2')).toBeInTheDocument()
     expect(screen.getByText('2023-01-01')).toBeInTheDocument()
     expect(screen.getByText('2022-01-01')).toBeInTheDocument()
-    expect(screen.getByText('★ 7.5')).toBeInTheDocument()
-    expect(screen.getByText('★ 8.1')).toBeInTheDocument()
+    expect(screen.getByText('7.5')).toBeInTheDocument()
+    expect(screen.getByText('8.1')).toBeInTheDocument()
   })
 
   it('shows fallback for empty list', () => {
