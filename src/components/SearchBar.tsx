@@ -17,7 +17,7 @@ export default function SearchBar({
       placeholder={t('home.searchPlaceholder')}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={`w-full p-2 border rounded ${className}`}
+      className={`w-full mb-12 p-3 rounded-xl border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-blue-400 transition ${className}`}
     />
   )
 }
