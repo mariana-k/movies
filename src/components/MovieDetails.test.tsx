@@ -13,7 +13,9 @@ afterEach(() => {
 
 describe('MovieDetails', () => {
   it('renders loading state', () => {
-    ;(tmdb.fetchMovieDetails as any).mockReturnValue(new Promise(() => {}))
+    ;(
+      tmdb.fetchMovieDetails as unknown as { mockReturnValue: (prop: unknown) => null }
+    ).mockReturnValue(new Promise(() => {}))
     const queryClient = new QueryClient()
     render(
       <QueryClientProvider client={queryClient}>
@@ -24,7 +26,9 @@ describe('MovieDetails', () => {
   })
 
   it('renders error state', async () => {
-    ;(tmdb.fetchMovieDetails as any).mockRejectedValue(new Error('fail'))
+    ;(
+      tmdb.fetchMovieDetails as unknown as { mockRejectedValue: (prop: unknown) => null }
+    ).mockRejectedValue(new Error('fail'))
     const queryClient = new QueryClient({
       defaultOptions: { queries: { retry: false } },
     })
@@ -37,7 +41,9 @@ describe('MovieDetails', () => {
   })
 
   it('renders movie details', async () => {
-    ;(tmdb.fetchMovieDetails as any).mockResolvedValue({
+    ;(
+      tmdb.fetchMovieDetails as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
       title: 'Test Movie',
       release_date: '2023-01-01',
       poster_path: '/poster.jpg',
@@ -63,7 +69,9 @@ describe('MovieDetails', () => {
   })
 
   it('renders untitled fallback when title is missing', async () => {
-    ;(tmdb.fetchMovieDetails as any).mockResolvedValue({
+    ;(
+      tmdb.fetchMovieDetails as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
       // title is missing
       release_date: '2023-01-01',
       poster_path: '/poster.jpg',
@@ -83,7 +91,9 @@ describe('MovieDetails', () => {
   })
 
   it('renders untitled fallback when title is empty string', async () => {
-    ;(tmdb.fetchMovieDetails as any).mockResolvedValue({
+    ;(
+      tmdb.fetchMovieDetails as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
       title: '',
       release_date: '2023-01-01',
       poster_path: '/poster.jpg',

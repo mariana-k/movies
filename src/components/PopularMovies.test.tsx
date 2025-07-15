@@ -14,7 +14,9 @@ afterEach(() => {
 
 describe('PopularMovies', () => {
   it('renders loading state', () => {
-    ;(tmdb.fetchPopularMovies as any).mockReturnValue(new Promise(() => {}))
+    ;(
+      tmdb.fetchPopularMovies as unknown as { mockReturnValue: (prop: unknown) => null }
+    ).mockReturnValue(new Promise(() => {}))
     const queryClient = new QueryClient()
     render(
       <QueryClientProvider client={queryClient}>
@@ -25,7 +27,9 @@ describe('PopularMovies', () => {
   })
 
   it('renders movie list', async () => {
-    ;(tmdb.fetchPopularMovies as any).mockResolvedValue({
+    ;(
+      tmdb.fetchPopularMovies as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
       results: [
         { id: 1, title: 'Movie 1' },
         { id: 2, title: 'Movie 2' },
@@ -42,7 +46,11 @@ describe('PopularMovies', () => {
   })
 
   it('renders no movies found', async () => {
-    ;(tmdb.fetchPopularMovies as any).mockResolvedValue({ results: [] })
+    ;(
+      tmdb.fetchPopularMovies as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
+      results: [],
+    })
     const queryClient = new QueryClient()
     render(
       <QueryClientProvider client={queryClient}>

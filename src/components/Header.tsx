@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import { t } from '../i18n'
 import { Film } from 'lucide-react'
 import Link from 'next/link'

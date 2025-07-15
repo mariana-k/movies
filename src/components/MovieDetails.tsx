@@ -13,6 +13,8 @@ function formatRuntime(runtime: number) {
   return `${h}h ${m}m`
 }
 
+type Genre = { id: number; name: string }
+
 export default function MovieDetails({ id }: { id: number }) {
   const { data, isLoading, error } = useQuery({
     queryKey: ['movie-details', id],
@@ -44,8 +46,8 @@ export default function MovieDetails({ id }: { id: number }) {
         <div className="text-gray-500 mb-2">{data.release_date || t('details.noReleaseDate')}</div>
         <div className="mb-4 text-gray-700">{data.overview || t('details.noOverview')}</div>
         <div className="flex flex-wrap gap-2 mb-2">
-          {data.genres?.length ? (
-            data.genres.map((g: any) => (
+          {Array.isArray(data.genres) && data.genres.length ? (
+            data.genres.map((g: Genre) => (
               <span
                 key={g.id}
                 className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium"

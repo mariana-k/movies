@@ -23,7 +23,9 @@ describe('SearchResults', () => {
   })
 
   it('shows loading state', async () => {
-    ;(tmdb.searchMovies as any).mockReturnValue(new Promise(() => {}))
+    ;(tmdb.searchMovies as unknown as { mockReturnValue: (prop: unknown) => null }).mockReturnValue(
+      new Promise(() => {}),
+    )
     renderWithClient(<SearchResults />)
     fireEvent.change(screen.getByPlaceholderText(t('home.searchPlaceholder')), {
       target: { value: 'batman' },
@@ -34,7 +36,9 @@ describe('SearchResults', () => {
   })
 
   it('shows error state', async () => {
-    ;(tmdb.searchMovies as any).mockRejectedValue(new Error('fail'))
+    ;(
+      tmdb.searchMovies as unknown as { mockRejectedValue: (prop: unknown) => null }
+    ).mockRejectedValue(new Error('fail'))
     renderWithClient(<SearchResults />)
     fireEvent.change(screen.getByPlaceholderText(t('home.searchPlaceholder')), {
       target: { value: 'batman' },
@@ -43,7 +47,9 @@ describe('SearchResults', () => {
   })
 
   it('shows search results', async () => {
-    ;(tmdb.searchMovies as any).mockResolvedValue({
+    ;(
+      tmdb.searchMovies as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
       results: [
         { id: 1, title: 'Batman' },
         { id: 2, title: 'Superman' },
@@ -58,7 +64,11 @@ describe('SearchResults', () => {
   })
 
   it('shows empty state for no results', async () => {
-    ;(tmdb.searchMovies as any).mockResolvedValue({ results: [] })
+    ;(
+      tmdb.searchMovies as unknown as { mockResolvedValue: (prop: unknown) => null }
+    ).mockResolvedValue({
+      results: [],
+    })
     renderWithClient(<SearchResults />)
     fireEvent.change(screen.getByPlaceholderText(t('home.searchPlaceholder')), {
       target: { value: 'batman' },

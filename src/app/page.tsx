@@ -1,5 +1,4 @@
 import React from 'react'
-import { t } from '../i18n'
 import { createSSRQueryClient, dehydrateState } from '../lib/react-query-ssr'
 import { HydrationBoundary } from '@tanstack/react-query'
 import QueryProvider from './QueryProvider'
